@@ -1,0 +1,154 @@
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Programmers Tz is a community for programmers in Tanzania.">
+    <meta name="keywords" content="programmers, Tanzania, coding, development, community, JavaScript">
+    <meta name="author" content="Bari Kaneno">
+    <title>Programmers Tz</title>
+  </head>
+   
+  <body>
+    <!-- Header section / Sehemu ya header -->
+    <div class="headers">
+      <h1> Programmers Tz</h1>
+    </div>
+
+    <!-- Body section / Sehemu ya body -->
+    <div class="body">
+      <h3> Here is body / hapa ni body </h3>
+      <div class="aside"></div>
+    </div>
+
+    <!-- Buttons section / Sehemu ya batani -->
+    <div class="buttons">
+      <button id="day" onclick="dayTheme(this)" style="height:20%">Day</button>
+      <button id="night" onclick="nightTheme(this)" >Night</button>
+    </div>
+
+    <!-- JavaScript code / Codes za JavaScript -->
+    <script>
+      // Define an object to store CSS styles for different classes / Unda object ya kuhifadhi style zako za CSS kwa kila class
+      let classList = ["headers", "body", "buttons"];
+
+      (function(classStyles) {
+        
+        // Define CSS styles for the "headers" class / Taja style za CSS kwa kwa class ya "headers"
+        classStyles.headers = function(per) {
+          let style = {
+            position: "absolute",
+            top: "0",
+            width: "100%",
+            textAlign: "center",
+            height: "20%",
+            backgroundColor: "white",
+            color: "black"
+          };
+
+          // Apply different styles for "night" mode / Tumia styles tofauti wakati wa "usiku"
+          if (per == "night") {
+            style.backgroundColor = "rgba(20,20,49,.7)";
+            style.color = "#ebebeb";
+          }
+
+          return style;
+        }
+
+        // Define CSS styles for the "body" class / Taja style ya CSS kwa class "body"
+        classStyles.body = function(per) {
+          let style = {
+            position: "absolute",
+            top: "18%",
+            marginTop: "2%",
+            textAlign:"center",
+            verticalAlign:"middle",
+            minHeight: `${0.7 * innerHeight}px`,
+            minWidth: "100%",
+            border: "1px solid black"
+          };
+
+          // Apply different styles for "night" mode / Tumia style tofauti wakati wa "usiku"
+          if (per == "night") {
+            style.borderTop = "borderTop:1px solid #ebebeb";
+          }
+
+          return style;
+        };
+
+        // Define CSS styles for the "buttons" class / Taja style za CSS kwa class "buttons"
+        classStyles.buttons = function(per) {
+          let style = {
+            display: "flex",
+            position: "fixed",
+            top: "45%",
+            left: "80%",
+            zIndex: 2,
+            fontSize: "120%",
+            padding: "2%",
+            gap: "4%",
+            marginRight: "0",
+            backgroundColor: "#ebebeb",
+            transform: "rotate(90deg)"
+          };
+
+          // Apply different styles for "night" mode / Tumia styles tofauti kwa mode ya "night"
+          if (per == "night") {
+            style.backgroundColor = "rgba(25,20,52,.7)";
+            style.color = "#ebebeb";
+          }
+
+          return style;
+        }
+
+        classStyles.footer = { day: "", night: "" };
+      })(this.modeStyles = {})
+
+      // Function to update the theme / function ya kuupdate theme
+      
+      function currentTheme(val = "night", [...classes]) {
+        if (val == "day") {
+          document.body.style.background = "white";
+          document.body.style.color = "black";
+        }
+        if (val == "night") {
+          document.body.style.background = "rgba(20,20,49,.7)";
+          document.body.style.color = "#ebebeb";
+        }
+
+        // Apply the defined styles for each class / Tumia style tajwa kwa kila class
+        
+        for (let i = 0; i < classes.length; i++) {
+          let cl = "." + classes[i];
+
+          if (document.querySelector(cl)) {
+            let cStyle = document.querySelector(cl)
+
+            let obj = modeStyles[String(classes[i])](val);
+
+            // Apply the defined styles to the selected element / Tumia style tajwa kwa kipengele kilichochaguliwa
+            
+            for (let key of Object.keys(obj)) {
+              cStyle.style[String(key)] = obj[key];
+            }
+          }
+        }
+      }
+
+      // Function to switch to the day theme / function  ya kubadili theme kuwa "day"
+      function dayTheme(th) {
+        currentTheme(th.id, classList);
+      }
+
+      // Function to switch to the night theme / function  ya kubadili theme kuwa "night"
+      function nightTheme(th) {
+        currentTheme(th.id, classList);
+      }
+
+      // Set the initial theme to "night" / Weka weka ya awali kuwa "night"
+      currentTheme("night", classList);
+    </script>
+  </body>
+</html>
