@@ -1,8 +1,7 @@
 
-Programmers Tz - Web Page
-Overview
+Web Page Overview
 
-This HTML file represents a simple web page titled "Programmers Tz." It is designed to serve as a template for a webpage with a day-night theme toggle feature. The page's structure includes header, body, and buttons sections.
+This HTML file represents a simple web page, it is designed to serve as a template for a webpage with a day-night theme toggle feature. The page's structure includes header, body, and buttons sections.
 File Structure
 
     index.html: This is the main HTML file containing the webpage structure and JavaScript code for theme switching.
